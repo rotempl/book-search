@@ -6,6 +6,8 @@ import GenericButton from "../common/GenericButton";
 import { useHistory } from "react-router-dom";
 import { routes } from "../../utils/routes";
 import { userNameKey } from "../../utils/variables";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../store/user/reducer";
 
 interface IFormInput {
   userName: string;
@@ -13,9 +15,11 @@ interface IFormInput {
 
 const HomePage: FC = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     localStorage.setItem(userNameKey, JSON.stringify(data.userName));
+    dispatch(setUser(data.userName));
     history.push(routes.search.route);
   };
 
