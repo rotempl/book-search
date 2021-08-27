@@ -4,7 +4,7 @@ import { GlobalStyle } from "./style/globalStyle";
 
 function App() {
   return (
-    <div>
+    <div style={{ height: "100%" }}>
       <GlobalStyle />
       <Router>
         <Routes />

@@ -26,13 +26,14 @@ ${() =>
   font-size: 10px;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
+  height: 100%;
   }
 
   body {
     margin: 0;
     font-family: ${fontFamilies.SourceSansPro};
     font-size: 1.6rem;
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     background-color: ${colors.blue};
     padding: 2rem;
@@ -97,6 +98,10 @@ a:focus {
 a:hover,
 a:active {
   outline: 0;
+}
+
+.root{ 
+  height: 100%;
 }
 
 `;
