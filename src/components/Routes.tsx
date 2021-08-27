@@ -6,20 +6,18 @@ import WishlistPage from "./WishlistPage";
 
 const Routes: FC = () => {
   return (
-    <div>
-      <Switch>
-        <Route exact path='/'>
-          <HomePage />
-        </Route>
-        <Route exact path='/search'>
-          <SearchPage />
-        </Route>
-        <Route exact path='/wishlist'>
-          <WishlistPage />
-        </Route>
-        <Redirect to='/' />
-      </Switch>
-    </div>
+    <Switch>
+      <Route exact path='/'>
+        <HomePage />
+      </Route>
+      <Route exact path='/search'>
+        <SearchPage />
+      </Route>
+      <Route exact path='/wishlist'>
+        <WishlistPage />
+      </Route>
+      <Redirect to='/' />
+    </Switch>
   );
 };
 
