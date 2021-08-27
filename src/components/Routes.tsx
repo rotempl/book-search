@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import HomePage from "./HomePage";
-import SearchPage from "./SearchPage";
-import WishlistPage from "./WishlistPage";
+import { routes } from "../utils/routes";
+import HomePage from "../components/HomePage";
+import ProtectedRoute from "./ProtectedRoute";
 
 const Routes: FC = () => {
   return (
@@ -10,12 +10,9 @@ const Routes: FC = () => {
       <Route exact path='/'>
         <HomePage />
       </Route>
-      <Route exact path='/search'>
-        <SearchPage />
-      </Route>
-      <Route exact path='/wishlist'>
-        <WishlistPage />
-      </Route>
+      {Object.values(routes).map((route) => (
+        <ProtectedRoute exact component={route.component} path={route.route} key={route.route} />
+      ))}
       <Redirect to='/' />
     </Switch>
   );
