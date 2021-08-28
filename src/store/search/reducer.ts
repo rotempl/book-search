@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { BookData } from "./models";
 import { fetchBooksList } from "./thunks";
 
 interface SearchState {
   searchString: string;
   isLoadingBooksList: boolean;
-  bookList: Array<any>;
+  bookList: Array<BookData>;
   totalItems: number;
   isError: boolean;
 }

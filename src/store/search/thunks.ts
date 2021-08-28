@@ -5,7 +5,10 @@ export const fetchBooksList = createAsyncThunk(
   "search/fetchBooksList",
   async (payload: { searchString: string; startIndex: number }) => {
     const { searchString, startIndex } = payload;
-    const { data } = await getBooksList(searchString, startIndex);
-    return data;
+    if (searchString) {
+      const { data } = await getBooksList(searchString, startIndex);
+      return data;
+    }
+    return { items: [], totalItems: 0 };
   }
 );

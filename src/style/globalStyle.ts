@@ -2,22 +2,6 @@ import { createGlobalStyle, css } from "styled-components";
 import { colors, fontFamilies } from "./globalVariables";
 
 export const GlobalStyle = createGlobalStyle`
-${() =>
-  css`
-    ::-webkit-scrollbar {
-      width: 4px;
-    }
-    ::-webkit-scrollbar-track {
-      background-color: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background-color: ${colors.gray};
-      border-radius: 20px;
-    }
-    ::-webkit-scrollbar-button {
-      display: none;
-    }
-  `}
 
   *, *:before, *:after {
     box-sizing: border-box;
@@ -37,7 +21,8 @@ ${() =>
     width: 100vw;
     background-color: ${colors.blue};
     padding: 2rem;
-    color: ${colors.white}
+    color: ${colors.white};
+    overflow: hidden;
   }
 
   ul {

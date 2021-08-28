@@ -8,3 +8,7 @@ export const getSearchString = (state: RootState) => {
 export const getResultPagesCount = (state: RootState) => {
   return state.search.totalItems / maxPaginationResults;
 };
+
+export const getBooksList = (state: RootState) => {
+  return state.search.bookList;
+};
