@@ -11,3 +11,12 @@ export const getBooksList = async (searchString: string, startIndex: number) => 
     throw err;
   }
 };
+
+export const getBookDetails = async (bookId: string) => {
+  try {
+    const { data } = await axios.get(`/${bookId}`);
+    return data;
+  } catch (err) {
+    throw err;
+  }
+};

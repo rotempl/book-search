@@ -5,14 +5,21 @@ import { ListContainer } from "./bookListStyle";
 
 interface BookListProps {
   ListOfBooks: Array<BookData>;
+  onBookCardClick: (id: string) => void;
 }
 
 const BookList: FC<BookListProps> = (props) => {
-  const { ListOfBooks } = props;
+  const { ListOfBooks, onBookCardClick } = props;
   return (
     <ListContainer>
       {ListOfBooks.map((book) => (
-        <BookCard bookInfo={book.volumeInfo} isInWishlist />
+        <BookCard
+          key={book.id}
+          id={book.id}
+          bookInfo={book.volumeInfo}
+          isInWishlist
+          onBookCardClick={onBookCardClick}
+        />
       ))}
     </ListContainer>
   );

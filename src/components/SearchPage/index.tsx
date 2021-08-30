@@ -1,6 +1,7 @@
-import React, { ChangeEvent, FC, useCallback } from "react";
+import React, { ChangeEvent, FC, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactPaginate from "react-paginate";
+import Modal from "react-modal";
 import { setSearchString } from "../../store/search/reducer";
 import { getSearchString, getResultPagesCount, getBooksList } from "../../store/search/selectors";
 import { fetchBooksList } from "../../store/search/thunks";
@@ -10,9 +11,13 @@ import { maxPaginationResults } from "../../utils/variables";
 import { SearchPageContainer, StyledPaginateContainer } from "./searchPageStyle";
 import { AppDispatch } from "../../store";
 import BookList from "./BookList";
+import useModal from "../../Hooks/useModal";
+import BookDetails from "./BookDetails";
 
 const SearchPage: FC = () => {
   const dispatch: AppDispatch = useDispatch();
+
+  const [presentedBookId, setPresentedBookId] = useState("");
 
   const userName = useSelector(getUserName);
   const searchString = useSelector(getSearchString);
@@ -27,16 +32,23 @@ const SearchPage: FC = () => {
     [dispatch]
   );
 
+  const { isModalOpen, closeModal, openModal } = useModal();
+
   const onPageChange = (selected: { selected: number }) => {
     const startIndex = selected.selected * maxPaginationResults;
     dispatch(fetchBooksList({ searchString, startIndex }));
+  };
+
+  const onBookCardClick = (id: string) => {
+    setPresentedBookId(id);
+    openModal();
   };
 
   return (
     <SearchPageContainer>
       <div>Hello {userName}</div>
       <Input value={searchString} onChange={onSearch} placeholder='search for a book' />
-      <BookList ListOfBooks={booksList} />
+      <BookList ListOfBooks={booksList} onBookCardClick={onBookCardClick} />
       {booksList.length ? (
         <StyledPaginateContainer>
           <ReactPaginate
@@ -53,6 +65,9 @@ const SearchPage: FC = () => {
           />
         </StyledPaginateContainer>
       ) : null}
+      <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel='Example Modal'>
+        <BookDetails presentedBookId={presentedBookId} closeModal={closeModal} isInWishlist />
+      </Modal>
     </SearchPageContainer>
   );
 };

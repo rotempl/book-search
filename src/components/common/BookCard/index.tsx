@@ -5,14 +5,21 @@ import Image from "../../common/Image";
 import GenericButton from "../GenericButton";
 
 interface BookCardProps {
+  id: string;
   bookInfo: VolumeInfo;
   isInWishlist: boolean;
+  onBookCardClick?: (id: string) => void;
 }
 
 const BookCard: FC<BookCardProps> = (props) => {
-  const { bookInfo, isInWishlist } = props;
+  const { id, bookInfo, isInWishlist, onBookCardClick } = props;
+
+  const onBookClick = () => {
+    onBookCardClick && onBookCardClick(id);
+  };
+
   return (
-    <CardContainer>
+    <CardContainer onClick={onBookClick}>
       <CardHeader>{bookInfo.title}</CardHeader>
       <Image
         src={bookInfo.imageLinks?.thumbnail}
