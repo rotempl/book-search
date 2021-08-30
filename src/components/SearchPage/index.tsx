@@ -5,7 +5,6 @@ import Modal from "react-modal";
 import { setSearchString } from "../../store/search/reducer";
 import { getSearchString, getResultPagesCount, getBooksList } from "../../store/search/selectors";
 import { fetchBooksList } from "../../store/search/thunks";
-import { getUserName } from "../../store/user/selectors";
 import Input from "../common/Input";
 import { maxPaginationResults } from "../../utils/variables";
 import { SearchPageContainer, StyledPaginateContainer } from "./searchPageStyle";
@@ -19,7 +18,6 @@ const SearchPage: FC = () => {
 
   const [presentedBookId, setPresentedBookId] = useState("");
 
-  const userName = useSelector(getUserName);
   const searchString = useSelector(getSearchString);
   const pageCount = useSelector(getResultPagesCount);
   const booksList = useSelector(getBooksList);
@@ -46,7 +44,6 @@ const SearchPage: FC = () => {
 
   return (
     <SearchPageContainer>
-      <div>Hello {userName}</div>
       <Input value={searchString} onChange={onSearch} placeholder='search for a book' />
       <BookList ListOfBooks={booksList} onBookCardClick={onBookCardClick} />
       {booksList.length ? (

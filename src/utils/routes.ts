@@ -3,11 +3,11 @@ import WishlistPage from "../components/WishlistPage";
 
 export const routes = {
   search: {
-    route: "/search",
+    route: "/app/search",
     component: SearchPage,
   },
   wishlist: {
-    route: "/wishlist",
+    route: "/app/wishlist",
     component: WishlistPage,
   },
 };

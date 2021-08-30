@@ -20,7 +20,6 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
     width: 100vw;
     background-color: ${colors.blue};
-    padding: 2rem;
     color: ${colors.white};
     overflow: hidden;
   }

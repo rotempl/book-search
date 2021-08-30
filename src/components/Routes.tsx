@@ -1,11 +1,11 @@
 import React, { FC, useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { routes } from "../utils/routes";
 import HomePage from "../components/HomePage";
 import ProtectedRoute from "./ProtectedRoute";
 import { userNameKey } from "../utils/variables";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/user/reducer";
+import MainPage from "./MainPage";
 
 const Routes: FC = () => {
   const dispatch = useDispatch();
@@ -22,9 +22,9 @@ const Routes: FC = () => {
       <Route exact path='/'>
         <HomePage />
       </Route>
-      {Object.values(routes).map((route) => (
-        <ProtectedRoute exact component={route.component} path={route.route} key={route.route} />
-      ))}
+      <ProtectedRoute path='/app'>
+        <MainPage />
+      </ProtectedRoute>
       <Redirect to='/' />
     </Switch>
   );
