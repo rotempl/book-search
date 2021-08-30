@@ -9,7 +9,7 @@ Modal.setAppElement("#root");
 function App() {
   return (
     <Provider store={store}>
-      <div style={{ height: "100%" }}>
+      <div style={{ height: "100vh" }}>
         <GlobalStyle />
         <Router>
           <Routes />

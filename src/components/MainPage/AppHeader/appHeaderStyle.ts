@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { headerHeight } from "../../../utils/variables";
 
 export const HeaderContainer = styled.div`
   position: sticky;
   background: #050c31;
-  height: 7rem;
+  height: ${headerHeight};
   margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;

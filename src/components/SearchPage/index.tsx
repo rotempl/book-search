@@ -12,6 +12,9 @@ import { AppDispatch } from "../../store";
 import BookList from "./BookList";
 import useModal from "../../Hooks/useModal";
 import BookDetails from "./BookDetails";
+import { WishlistBook } from "../../store/wishlist/models";
+import { getWishlist } from "../../store/wishlist/selectors";
+import { toggleWishlistElement } from "../../store/wishlist/reducer";
 
 const SearchPage: FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -21,6 +24,7 @@ const SearchPage: FC = () => {
   const searchString = useSelector(getSearchString);
   const pageCount = useSelector(getResultPagesCount);
   const booksList = useSelector(getBooksList);
+  const wishlist = useSelector(getWishlist);
 
   const onSearch = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,10 +46,19 @@ const SearchPage: FC = () => {
     openModal();
   };
 
+  const onToggleWishlist = (bookData: WishlistBook, toAdd: boolean) => {
+    dispatch(toggleWishlistElement({ bookData, toAdd }));
+  };
+
   return (
     <SearchPageContainer>
       <Input value={searchString} onChange={onSearch} placeholder='search for a book' />
-      <BookList ListOfBooks={booksList} onBookCardClick={onBookCardClick} />
+      <BookList
+        ListOfBooks={booksList}
+        onBookCardClick={onBookCardClick}
+        onToggleWishlist={onToggleWishlist}
+        wishlist={wishlist}
+      />
       {booksList.length ? (
         <StyledPaginateContainer>
           <ReactPaginate
