@@ -3,6 +3,7 @@ export const colors = {
   gray: "#596268d9;",
   white: "#ffffff",
   error: "#f63c3c",
+  loader: "#00BFFF",
 };
 
 export const fontFamilies = {

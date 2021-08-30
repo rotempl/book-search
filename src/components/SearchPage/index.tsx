@@ -3,7 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import ReactPaginate from "react-paginate";
 import Modal from "react-modal";
 import { setSearchString } from "../../store/search/reducer";
-import { getSearchString, getResultPagesCount, getBooksList } from "../../store/search/selectors";
+import {
+  getSearchString,
+  getResultPagesCount,
+  getBooksList,
+  isLoadingBooksList as isLoadingBooksListSelector,
+} from "../../store/search/selectors";
 import { fetchBooksList } from "../../store/search/thunks";
 import Input from "../common/Input";
 import { maxPaginationResults } from "../../utils/variables";
@@ -15,6 +20,7 @@ import BookDetails from "./BookDetails";
 import { WishlistBook } from "../../store/wishlist/models";
 import { getWishlist } from "../../store/wishlist/selectors";
 import { toggleWishlistElement } from "../../store/wishlist/reducer";
+import CommonLoader from "../common/CommonLoader";
 
 const SearchPage: FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -24,6 +30,7 @@ const SearchPage: FC = () => {
   const searchString = useSelector(getSearchString);
   const pageCount = useSelector(getResultPagesCount);
   const booksList = useSelector(getBooksList);
+  const isLoadingBooksList = useSelector(isLoadingBooksListSelector);
   const wishlist = useSelector(getWishlist);
 
   const onSearch = useCallback(
@@ -53,12 +60,16 @@ const SearchPage: FC = () => {
   return (
     <SearchPageContainer>
       <Input value={searchString} onChange={onSearch} placeholder='search for a book' />
-      <BookList
-        ListOfBooks={booksList}
-        onBookCardClick={onBookCardClick}
-        onToggleWishlist={onToggleWishlist}
-        wishlist={wishlist}
-      />
+      {isLoadingBooksList ? (
+        <CommonLoader />
+      ) : (
+        <BookList
+          ListOfBooks={booksList}
+          onBookCardClick={onBookCardClick}
+          onToggleWishlist={onToggleWishlist}
+          wishlist={wishlist}
+        />
+      )}
       {booksList.length ? (
         <StyledPaginateContainer>
           <ReactPaginate

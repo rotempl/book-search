@@ -1,6 +1,7 @@
 import React, { FC, useCallback, useEffect, useState } from "react";
 import { getBookDetails } from "../../../store/search/service";
 import { AnyObject } from "../../../utils/variables";
+import CommonLoader from "../../common/CommonLoader";
 import GenericButton from "../../common/GenericButton";
 
 interface BookDetailsProps {
@@ -38,7 +39,7 @@ const BookDetails: FC<BookDetailsProps> = (props) => {
   };
 
   if (isLoading) {
-    return <div>loader</div>;
+    return <CommonLoader />;
   }
 
   return (

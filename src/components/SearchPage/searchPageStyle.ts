@@ -30,3 +30,9 @@ export const StyledPaginateContainer = styled.div`
     font-weight: bold;
   }
 `;
+
+export const LoaderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

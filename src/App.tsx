@@ -4,6 +4,7 @@ import { GlobalStyle } from "./style/globalStyle";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import Modal from "react-modal";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 Modal.setAppElement("#root");
 function App() {

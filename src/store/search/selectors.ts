@@ -12,3 +12,7 @@ export const getResultPagesCount = (state: RootState) => {
 export const getBooksList = (state: RootState) => {
   return state.search.bookList;
 };
+
+export const isLoadingBooksList = (state: RootState) => {
+  return state.search.isLoadingBooksList;
+};
