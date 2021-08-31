@@ -8,6 +8,10 @@ export const SearchPageContainer = styled.div`
 `;
 
 export const StyledPaginateContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
   .pagination {
     display: flex;
     li {
@@ -23,7 +27,7 @@ export const StyledPaginateContainer = styled.div`
     cursor: default;
   }
   .active {
-    background-color: ${colors.white};
+    background-color: ${colors.text};
     color: ${colors.blue};
     border-radius: 50%;
     font-weight: bold;

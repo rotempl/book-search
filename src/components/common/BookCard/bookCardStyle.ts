@@ -1,15 +1,22 @@
 import styled from "styled-components";
-import { SubHeader } from "../../../style/commonStyle";
 
 export const CardContainer = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  border: 1px solid;
+  border-bottom: 1px solid;
   border-radius: 0.6rem;
   padding: 1rem;
+  justify-content: space-between;
 `;
 
-export const CardHeader = styled(SubHeader)`
-  height: 10rem;
+export const BookData = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  align-items: flex-end;
+  cursor: pointer;
+  grid-column-gap: 1rem;
+`;
+
+export const FlexDiv = styled.div`
+  display: flex;
 `;

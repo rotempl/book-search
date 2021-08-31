@@ -1,8 +1,9 @@
 import React, { FC } from "react";
 import { VolumeInfo } from "../../../store/search/models";
-import { CardContainer, CardHeader } from "./bookCardStyle";
+import { BookData, CardContainer, FlexDiv } from "./bookCardStyle";
 import Image from "../../common/Image";
 import GenericButton from "../GenericButton";
+import { SubHeader } from "../../../style/commonStyle";
 
 interface BookCardProps {
   id: string;
@@ -26,15 +27,19 @@ const BookCard: FC<BookCardProps> = (props) => {
 
   return (
     <CardContainer>
-      <div onClick={onBookClick}>
-        <CardHeader>{bookInfo.title}</CardHeader>
+      <BookData onClick={onBookClick}>
         <Image
           src={bookInfo.imageLinks?.thumbnail}
           alt={bookInfo.title}
-          height={"17rem"}
-          width={"11rem"}
+          height={"8rem"}
+          width={"6rem"}
         />
-      </div>
+        <SubHeader>{bookInfo.title}</SubHeader>
+        <FlexDiv>
+          <div>{bookInfo.authors?.join(", ")}</div>
+          <div>{bookInfo.publishedDate}</div>
+        </FlexDiv>
+      </BookData>
       <GenericButton
         text={isInWishlist ? "remove from wishlist" : "add to wishlist"}
         onClick={onClickWishlistButton}

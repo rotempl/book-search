@@ -23,7 +23,7 @@ const BookList: FC<BookListProps> = (props) => {
 
   return (
     <ListContainer>
-      {ListOfBooks.map((book) => (
+      {ListOfBooks?.map((book) => (
         <BookCard
           key={book.id}
           id={book.id}

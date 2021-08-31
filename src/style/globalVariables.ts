@@ -1,6 +1,7 @@
 export const colors = {
-  blue: "#005587",
-  gray: "#596268d9;",
+  blue: "#dcf2ff",
+  text: "#4c4b4b",
+  gray: "#597c94d9",
   white: "#ffffff",
   error: "#f63c3c",
   loader: "#00BFFF",

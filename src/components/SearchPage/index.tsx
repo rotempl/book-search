@@ -77,7 +77,7 @@ const SearchPage: FC = () => {
           wishlist={wishlist}
         />
       )}
-      {booksList.length ? (
+      {booksList?.length ? (
         <StyledPaginateContainer>
           <ReactPaginate
             previousLabel={"previous"}
