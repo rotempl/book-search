@@ -1,9 +1,8 @@
 import React, { FC } from "react";
 import { VolumeInfo } from "../../../store/search/models";
-import { BookData, CardContainer, FlexDiv } from "./bookCardStyle";
+import { BookData, BookTitle, CardContainer, FlexDiv } from "./bookCardStyle";
 import Image from "../../common/Image";
 import GenericButton from "../GenericButton";
-import { SubHeader } from "../../../style/commonStyle";
 
 interface BookCardProps {
   id: string;
@@ -27,14 +26,14 @@ const BookCard: FC<BookCardProps> = (props) => {
 
   return (
     <CardContainer>
-      <BookData onClick={onBookClick}>
+      <BookData onClick={onBookClick} isClickable={!!onBookCardClick}>
         <Image
           src={bookInfo.imageLinks?.thumbnail}
           alt={bookInfo.title}
           height={"8rem"}
           width={"6rem"}
         />
-        <SubHeader>{bookInfo.title}</SubHeader>
+        <BookTitle isClickable={!!onBookCardClick}>{bookInfo.title}</BookTitle>
         <FlexDiv>
           <div>{bookInfo.authors?.join(", ")}</div>
           <div>{bookInfo.publishedDate}</div>

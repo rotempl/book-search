@@ -9,11 +9,17 @@ export const CardContainer = styled.div`
   justify-content: space-between;
 `;
 
-export const BookData = styled.div`
+export const BookTitle = styled.div<{ isClickable?: boolean }>`
+  font-size: 2rem;
+  font-weight: 600;
+  text-decoration: ${({ isClickable }) => (isClickable ? "underline" : "auto")};
+`;
+
+export const BookData = styled.div<{ isClickable?: boolean }>`
   display: grid;
   grid-auto-flow: column;
   align-items: flex-end;
-  cursor: pointer;
+  cursor: ${({ isClickable }) => (isClickable ? "pointer" : "regular")};
   grid-column-gap: 1rem;
 `;
 
