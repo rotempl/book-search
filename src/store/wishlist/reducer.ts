@@ -13,6 +13,9 @@ export const slice = createSlice({
   name: "wishlist",
   initialState: INITIAL_STATE,
   reducers: {
+    initWishlist: (state, action: PayloadAction<Array<WishlistBook>>) => {
+      state.wishlist = action.payload;
+    },
     toggleWishlistElement: (
       state,
       action: PayloadAction<{ id: string; bookData?: VolumeInfo }>
@@ -25,11 +28,12 @@ export const slice = createSlice({
         const bookIndex = currentWishlist.findIndex((book) => book.id === id);
         currentWishlist.splice(bookIndex, 1);
       }
+      localStorage.setItem("wishlist", JSON.stringify(currentWishlist));
       state.wishlist = currentWishlist;
     },
   },
 });
 
-export const { toggleWishlistElement } = slice.actions;
+export const { toggleWishlistElement, initWishlist } = slice.actions;
 
 export const wishlistReducer = slice.reducer;

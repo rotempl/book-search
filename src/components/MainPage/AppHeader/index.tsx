@@ -1,13 +1,14 @@
 import React, { FC, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getUserName } from "../../../store/user/selectors";
 import { routes } from "../../../utils/routes";
 import { NavigationButton, HeaderContainer } from "./appHeaderStyle";
 
-const AppHeader: FC = () => {
+interface AppHeaderProps {
+  userName: string;
+}
+const AppHeader: FC<AppHeaderProps> = (props) => {
+  const { userName } = props;
   const history = useHistory();
-  const userName = useSelector(getUserName);
 
   const [activeRoute, setActiveRoute] = useState("");
 
