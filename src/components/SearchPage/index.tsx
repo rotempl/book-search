@@ -96,7 +96,7 @@ const SearchPage: FC = () => {
       <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
-        style={{ content: { inset: "200px" } }}
+        style={{ content: { inset: "200px", background: "rgb(232 232 232)" } }}
       >
         <BookDetails
           presentedBookId={presentedBookId}
