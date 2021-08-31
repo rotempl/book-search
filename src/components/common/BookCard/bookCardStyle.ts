@@ -21,6 +21,7 @@ export const BookData = styled.div<{ isClickable?: boolean }>`
   align-items: flex-end;
   cursor: ${({ isClickable }) => (isClickable ? "pointer" : "regular")};
   grid-column-gap: 1rem;
+  max-width: 85%;
 `;
 
 export const FlexDiv = styled.div`
