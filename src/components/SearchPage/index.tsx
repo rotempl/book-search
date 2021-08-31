@@ -57,6 +57,13 @@ const SearchPage: FC = () => {
     dispatch(toggleWishlistElement({ id, bookData }));
   };
 
+  const isBookInWishlist = useCallback(
+    (id: string) => {
+      return !!wishlist.find((wishlistBook) => wishlistBook.id === id);
+    },
+    [wishlist]
+  );
+
   return (
     <SearchPageContainer>
       <Input value={searchString} onChange={onSearch} placeholder='search for a book' />
@@ -87,7 +94,12 @@ const SearchPage: FC = () => {
         </StyledPaginateContainer>
       ) : null}
       <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel='Example Modal'>
-        <BookDetails presentedBookId={presentedBookId} closeModal={closeModal} isInWishlist />
+        <BookDetails
+          presentedBookId={presentedBookId}
+          closeModal={closeModal}
+          isInWishlist={isBookInWishlist(presentedBookId)}
+          onToggleWishlist={onToggleWishlist}
+        />
       </Modal>
     </SearchPageContainer>
   );

@@ -1,4 +1,5 @@
 import React, { FC, useCallback, useEffect, useState } from "react";
+import { VolumeInfo } from "../../../store/search/models";
 import { getBookDetails } from "../../../store/search/service";
 import { AnyObject } from "../../../utils/variables";
 import CommonLoader from "../../common/CommonLoader";
@@ -8,10 +9,11 @@ interface BookDetailsProps {
   presentedBookId: string;
   closeModal: () => void;
   isInWishlist: boolean;
+  onToggleWishlist: (id: string, bookData?: VolumeInfo) => void;
 }
 
 const BookDetails: FC<BookDetailsProps> = (props) => {
-  const { presentedBookId, closeModal, isInWishlist } = props;
+  const { presentedBookId, closeModal, isInWishlist, onToggleWishlist } = props;
 
   const [bookDetails, setBookDetails] = useState<AnyObject>({});
   const [isLoading, setIsLoading] = useState(false);
@@ -34,8 +36,9 @@ const BookDetails: FC<BookDetailsProps> = (props) => {
 
   const favoriteButtonText = isInWishlist ? "Remove from wishlist" : "Add to wishlist";
 
-  const onToggleWishlist = () => {
-    console.log("wishlist");
+  const onClickToggleWishlist = () => {
+    const bookData = isInWishlist ? undefined : bookDetails.volumeInfo;
+    onToggleWishlist(presentedBookId, bookData);
   };
 
   if (isLoading) {
@@ -48,7 +51,7 @@ const BookDetails: FC<BookDetailsProps> = (props) => {
       <div>{bookDetails?.volumeInfo?.title}</div>
       <div>
         <GenericButton text='cancel' onClick={closeModal} />
-        <GenericButton text={favoriteButtonText} onClick={onToggleWishlist} />
+        <GenericButton text={favoriteButtonText} onClick={onClickToggleWishlist} />
       </div>
     </div>
   );
