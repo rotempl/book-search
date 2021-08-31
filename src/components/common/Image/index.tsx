@@ -5,8 +5,8 @@ import styled from "styled-components";
 interface ImageProps {
   src: string | undefined;
   alt: string;
-  height: string;
-  width: string;
+  height?: string;
+  width?: string;
 }
 
 export const StyledImage = styled.img<{ height: string; width: string }>`
@@ -15,7 +15,7 @@ export const StyledImage = styled.img<{ height: string; width: string }>`
 `;
 
 const Image: FC<ImageProps> = (props) => {
-  const { src, alt, height, width } = props;
+  const { src, alt, height = "10rem", width = "8rem" } = props;
   const imageSrc = src ? src : empty;
   return <StyledImage src={imageSrc} alt={alt} height={height} width={width} />;
 };

@@ -4,6 +4,15 @@ import { getBookDetails } from "../../../store/search/service";
 import { AnyObject } from "../../../utils/variables";
 import CommonLoader from "../../common/CommonLoader";
 import GenericButton from "../../common/GenericButton";
+import Image from "../../common/Image";
+import {
+  BookDetailsBody,
+  BookDetailsContainer,
+  BookDetailsSection,
+  ButtonsContainer,
+  KeyStyle,
+} from "./bookDetailsStyle";
+import { infoSections, renderByType, saleInfoSections } from "./utils";
 
 interface BookDetailsProps {
   presentedBookId: string;
@@ -45,15 +54,45 @@ const BookDetails: FC<BookDetailsProps> = (props) => {
     return <CommonLoader />;
   }
 
+  const renderBookSection = (key: string, value?: string | Array<string> | boolean | number) => {
+    if (value) {
+      return (
+        <BookDetailsSection key={key}>
+          <KeyStyle>{key}:</KeyStyle>
+          <div>{renderByType(value)}</div>
+        </BookDetailsSection>
+      );
+    }
+    return null;
+  };
+
   return (
-    <div style={{ color: "green" }}>
-      <div>I'm book details</div>
-      <div>{bookDetails?.volumeInfo?.title}</div>
-      <div>
+    <BookDetailsContainer>
+      <BookDetailsBody>
+        <Image
+          src={bookDetails?.volumeInfo?.imageLinks?.thumbnail}
+          alt='book image'
+          height={"30rem"}
+          width={"20rem"}
+        />
+        <div>
+          <div>
+            {Object.entries(infoSections).map(([key, value]) =>
+              renderBookSection(key, bookDetails?.volumeInfo?.[value])
+            )}
+          </div>
+          <div>
+            {Object.entries(saleInfoSections).map(([key, value]) =>
+              renderBookSection(key, bookDetails?.saleInfo?.[value])
+            )}
+          </div>
+        </div>
+      </BookDetailsBody>
+      <ButtonsContainer>
         <GenericButton text='cancel' onClick={closeModal} />
         <GenericButton text={favoriteButtonText} onClick={onClickToggleWishlist} />
-      </div>
-    </div>
+      </ButtonsContainer>
+    </BookDetailsContainer>
   );
 };
 

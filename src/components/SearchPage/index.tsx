@@ -93,7 +93,11 @@ const SearchPage: FC = () => {
           />
         </StyledPaginateContainer>
       ) : null}
-      <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel='Example Modal'>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        style={{ content: { inset: "200px" } }}
+      >
         <BookDetails
           presentedBookId={presentedBookId}
           closeModal={closeModal}
