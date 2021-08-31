@@ -26,6 +26,7 @@ const AppHeader: FC = () => {
       <div>
         {Object.entries(routes).map(([key, value]) => (
           <NavigationButton
+            key={key}
             isActive={activeRoute === value.route}
             onClick={() => onNavigationButtonClick(value.route)}
             disabled={activeRoute === value.route}

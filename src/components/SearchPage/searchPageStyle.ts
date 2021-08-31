@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import { colors } from "../../style/globalVariables";
-import { headerHeight } from "../../utils/variables";
 
 export const SearchPageContainer = styled.div`
   display: grid;
   grid-template-rows: 1fr 9fr 1fr;
-  height: calc(100vh - ${headerHeight});
+  height: 100%;
 `;
 
 export const StyledPaginateContainer = styled.div`

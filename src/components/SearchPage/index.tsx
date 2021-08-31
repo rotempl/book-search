@@ -17,10 +17,10 @@ import { AppDispatch } from "../../store";
 import BookList from "./BookList";
 import useModal from "../../Hooks/useModal";
 import BookDetails from "./BookDetails";
-import { WishlistBook } from "../../store/wishlist/models";
 import { getWishlist } from "../../store/wishlist/selectors";
 import { toggleWishlistElement } from "../../store/wishlist/reducer";
 import CommonLoader from "../common/CommonLoader";
+import { VolumeInfo } from "../../store/search/models";
 
 const SearchPage: FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -53,8 +53,8 @@ const SearchPage: FC = () => {
     openModal();
   };
 
-  const onToggleWishlist = (bookData: WishlistBook, toAdd: boolean) => {
-    dispatch(toggleWishlistElement({ bookData, toAdd }));
+  const onToggleWishlist = (id: string, bookData?: VolumeInfo) => {
+    dispatch(toggleWishlistElement({ id, bookData }));
   };
 
   return (

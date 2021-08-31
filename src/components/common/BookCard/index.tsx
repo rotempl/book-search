@@ -3,14 +3,13 @@ import { VolumeInfo } from "../../../store/search/models";
 import { CardContainer, CardHeader } from "./bookCardStyle";
 import Image from "../../common/Image";
 import GenericButton from "../GenericButton";
-import { WishlistBook } from "../../../store/wishlist/models";
 
 interface BookCardProps {
   id: string;
   bookInfo: VolumeInfo;
   isInWishlist: boolean;
   onBookCardClick?: (id: string) => void;
-  onToggleWishlist: (bookData: WishlistBook, toAdd: boolean) => void;
+  onToggleWishlist: (id: string, bookData?: VolumeInfo) => void;
 }
 
 const BookCard: FC<BookCardProps> = (props) => {
@@ -21,7 +20,8 @@ const BookCard: FC<BookCardProps> = (props) => {
   };
 
   const onClickWishlistButton = () => {
-    onToggleWishlist({ id: id, info: bookInfo }, !isInWishlist);
+    const bookData = isInWishlist ? undefined : bookInfo;
+    onToggleWishlist(id, bookData);
   };
 
   return (

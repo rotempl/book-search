@@ -1,4 +1,5 @@
 import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
+import { VolumeInfo } from "../search/models";
 import { WishlistBook } from "./models";
 
 interface WishlistState {
@@ -14,14 +15,14 @@ export const slice = createSlice({
   reducers: {
     toggleWishlistElement: (
       state,
-      action: PayloadAction<{ bookData: WishlistBook; toAdd: boolean }>
+      action: PayloadAction<{ id: string; bookData?: VolumeInfo }>
     ) => {
-      const { bookData, toAdd } = action.payload;
+      const { id, bookData } = action.payload;
       const currentWishlist = [...current(state).wishlist];
-      if (toAdd) {
-        currentWishlist.push(bookData);
+      if (bookData) {
+        currentWishlist.push({ id, info: bookData });
       } else {
-        const bookIndex = currentWishlist.findIndex((book) => book.id === bookData.id);
+        const bookIndex = currentWishlist.findIndex((book) => book.id === id);
         currentWishlist.splice(bookIndex, 1);
       }
       state.wishlist = currentWishlist;

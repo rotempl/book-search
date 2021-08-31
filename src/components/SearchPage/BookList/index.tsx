@@ -1,5 +1,5 @@
 import React, { FC, useCallback } from "react";
-import { BookData } from "../../../store/search/models";
+import { BookData, VolumeInfo } from "../../../store/search/models";
 import { WishlistBook } from "../../../store/wishlist/models";
 import BookCard from "../../common/BookCard";
 import { ListContainer } from "./bookListStyle";
@@ -7,7 +7,7 @@ import { ListContainer } from "./bookListStyle";
 interface BookListProps {
   ListOfBooks: Array<BookData>;
   onBookCardClick: (id: string) => void;
-  onToggleWishlist: (bookData: WishlistBook, toAdd: boolean) => void;
+  onToggleWishlist: (id: string, bookData?: VolumeInfo) => void;
   wishlist: Array<WishlistBook>;
 }
 
